@@ -177,4 +177,58 @@ void show()
     } while (option != ' ' && option != 'a' && option != 'b');
 }
 
-int main() {}
+int main()
+{
+    std::list<Data> l;
+    string agentid, password;
+
+    cout << "please insert your AgentID" << endl;
+    cin >> agentid;
+    cout << " please insert your password" << endl;
+    cin >> password;
+
+    if (login(agentid, password))
+    {
+        load(l);
+        char option;
+
+        do
+        {
+            option = menu();
+
+            switch (option)
+            {
+            case 'a':
+
+                break;
+            case 'b':
+                break;
+            case 'c':
+                break;
+            case 'd':
+                break;
+            case 'e':
+                break;
+            case 'f':
+                show();
+                break;
+            case 'g':
+                break;
+            case 'i':
+                cout << "good bye" << endl;
+                break;
+
+            case 'h':
+                changepass(agentid);
+                break;
+
+                break;
+            default:
+                cout << "wrong selection" << endl;
+            }
+
+        } while (option != 'i');
+    }
+
+    return (0);
+}
