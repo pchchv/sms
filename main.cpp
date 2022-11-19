@@ -43,6 +43,24 @@ bool login(string agentid, string password)
     return granted;
 }
 
+char menu()
+{
+    char option;
+
+    cout << "Menu" << endl;
+    cout << "(a) Add new property" << endl;
+    cout << "(b) Remove property " << endl;
+    cout << "(c) Edit sales entries" << endl;
+    cout << "(d) Inquire or search property sales" << endl;
+    cout << "(e) Monthly property sales transaction report" << endl;
+    cout << "(f) List property sale items in ascending or descending order" << endl;
+    cout << "(g) Administration - add / remove property agent" << endl;
+    cout << "(h) Administration - change password" << endl;
+    cout << "(i) Quit" << endl;
+    cin >> option;
+    return option;
+}
+
 void load(std::list<Data> l)
 {
     Data datos;
