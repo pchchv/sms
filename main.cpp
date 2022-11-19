@@ -1,5 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <string>
+#include <list>
+#include "data.hpp"
 
 using namespace std;
 
@@ -9,7 +13,7 @@ bool findpass(string pass, string id)
     bool found = false;
     std::ifstream passwords;
     passwords.open("passwords.in");
-    while (!passwords.eof() && !found) // To get you all the lines.
+    while (!passwords.eof() && !found)
     {
         passwords >> pas >> ag;
 
@@ -29,7 +33,6 @@ bool login(string agentid, string password)
     pass = findpass(password, agentid);
     if (pass)
     {
-
         cout << "access granted" << endl;
         granted = true;
     }
@@ -37,7 +40,72 @@ bool login(string agentid, string password)
     {
         cout << "\nLogin Failed!!\n";
     }
-    return (granted);
+    return granted;
+}
+
+void load(std::list<Data> l)
+{
+    Data datos;
+    int i = 0;
+    unsigned int encontro, anterior;
+    std::string STRING, agentid, contact, size, roomtype, location, sellingprice;
+    std::ifstream infile;
+    infile.open("data.in");
+
+    while (!infile.eof())
+    {
+        getline(infile, STRING); // Saves the line in STRING
+        encontro = STRING.find(':', 0);
+        if (encontro != std::string::npos)
+        {
+            agentid = STRING.substr(0, encontro);
+            datos.setAgentId(agentid);
+        }
+        anterior = encontro + 1;
+        encontro = STRING.find(':', anterior);
+
+        if (encontro != std::string::npos)
+        {
+            contact = STRING.substr(anterior, encontro - anterior);
+            datos.setContact(contact);
+        }
+        anterior = encontro + 1;
+        encontro = STRING.find(':', anterior);
+
+        if (encontro != std::string::npos)
+        {
+            size = STRING.substr(anterior, encontro - anterior);
+            datos.setPropertySize(size);
+        }
+
+        anterior = encontro + 1;
+        encontro = STRING.find(':', anterior + 1);
+
+        if (encontro != std::string::npos)
+        {
+            roomtype = STRING.substr(anterior, encontro - anterior);
+            datos.setRoomType(roomtype);
+        }
+
+        anterior = encontro + 1;
+        encontro = STRING.find(':', anterior + 1);
+
+        if (encontro != std::string::npos)
+        {
+            location = STRING.substr(anterior, encontro - anterior);
+            datos.setLocation(location);
+        }
+
+        anterior = encontro + 1;
+        sellingprice = STRING.substr(anterior, STRING.length() - anterior);
+
+        datos.setSellingPrice(sellingprice);
+
+        l.push_back(datos); // Saved each data from "data.in" to the end of the list
+
+        i++;
+    }
+    infile.close();
 }
 
 int main() {}
