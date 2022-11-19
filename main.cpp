@@ -155,4 +155,26 @@ void load(std::list<Data> l)
     infile.close();
 }
 
+void show()
+{
+    char option;
+
+    do
+    {
+        cout << "Please insert (a) to see the list in ascending order" << endl;
+        cout << "Please insert (b) to see the is in descending order" << endl;
+        cout << "Else for returning to main menu" << endl;
+        cin >> option;
+        switch (option)
+        {
+        case 'a':
+            break;
+        case 'b':
+            break;
+        default:
+            option = ' ';
+        }
+    } while (option != ' ' && option != 'a' && option != 'b');
+}
+
 int main() {}
