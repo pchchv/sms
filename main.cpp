@@ -4,8 +4,37 @@
 #include <string>
 #include <list>
 #include "data.hpp"
+#include "property.hpp"
 
 using namespace std;
+
+void addProperty(std::list<Data> &l)
+{
+    Data datos;
+    string agentid, contact, size, roomtype, location, sellingprice;
+
+    cout << "welcome to the propperty adding menu" << endl;
+    cout << "Please insert your Agent ID:" << endl;
+    cin >> agentid;
+    datos.setAgentId(agentid);
+    cout << "please insert your Contact:" << endl;
+    cin >> contact;
+    datos.setContact(contact);
+    cout << "please insert your Property Size:" << endl;
+    cin >> size;
+    datos.setPropertySize(size);
+    cout << "please insert your RoomType:" << endl;
+    cin >> roomtype;
+    datos.setRoomType(roomtype);
+    cout << "please insert your Location:" << endl;
+    cin >> location;
+    datos.setLocation(location);
+    cout << "please insert your Selling Price:" << endl;
+    cin >> sellingprice;
+
+    datos.setSellingPrice(sellingprice);
+    l.push_back(datos);
+}
 
 void OrderList(std::list<Data> &l)
 {
