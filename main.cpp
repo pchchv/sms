@@ -7,6 +7,27 @@
 
 using namespace std;
 
+void OrderList(std::list<Data> &l)
+{
+    char resp;
+
+    do
+    {
+        cout << "What order do you want? ascending=a or descending=d" << endl;
+        cin >> resp;
+        if (resp != 'a' && resp != 'd')
+        {
+            cout << "ERROR, Please be careful" << endl;
+        }
+    } while (resp != 'a' && resp != 'd');
+
+    l.sort();
+    if (resp == 'd')
+    {
+        l.reverse();
+    }
+}
+
 bool findpass(string pass, string id)
 {
     string pas, ag;
