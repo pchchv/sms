@@ -61,6 +61,35 @@ char menu()
     return option;
 }
 
+void changepass(string id)
+{
+    std::list<string> passw, agentid;
+    string pas, ag;
+    std::ifstream passwords;
+    std::ofstream p;
+    passwords.open("passwords.in");
+    while (!passwords.eof())
+    {
+        passwords >> pas >> ag;
+        passw.push_back(pas);
+        agentid.push_back(ag);
+    }
+    passwords.close();
+    cout << "just for security i will need you to re-login" << endl;
+    cout << "what is your current pass" << endl;
+    cin >> pas;
+    p.open("passwords.in");
+    if (login(id, pas))
+    {
+        cout << "access granted , please input the new password" << endl;
+        cin >> pas;
+        while (agentid.empty())
+        {
+            p << passw.pop_front();
+        }
+    }
+}
+
 void load(std::list<Data> l)
 {
     Data datos;
